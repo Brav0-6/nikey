@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardise Footwear - Premium Athletic Shoes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #9c0f0f;
+            color: white;
+            overflow-x: hidden;
+            transition: background-color 0.8s ease;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 5px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a.active {
+            background-color: white;
+            color: #9c0f0f;
+        }
+        
+        .nav-links a:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .login-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 20px;
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .main-content {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            padding: 0;
+            position: relative;
+        }
+        
+        .product-info {
+            flex: 1;
+            max-width: 500px;
+            text-align: left;
+            z-index: 5;
+        }
+        
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+        
+        .product-name {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+        
+        .placeholder-text {
+            opacity: 0.7;
+            margin-bottom: 40px;
+            max-width: 80%;
+        }
+        
+        .product-display {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Carousel styles */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: visible;
+        }
+        
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: transform 1s ease, opacity 1s ease;
+            z-index: 1;
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+            transform: translateX(0) rotate(-25deg);
+            z-index: 2;
+        }
+        
+        .carousel-slide.prev {
+            opacity: 0;
+            transform: translateX(-100px);
+            z-index: 1;
+        }
+        
+        .shoe-img {
+            max-width: 450px;
+            max-height: 300px;
+            transform: rotate(-25deg);
+            filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.3));
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .circular-elements {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 150px;
+            z-index: 1;
+        }
+        
+        .circular-outline {
+            position: absolute;
+            width: 600px;
+            height: 150px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 1;
+        }
+        
+        .circular-indicator {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .circle-inside {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: white;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background-color: white;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+        
+        .carousel-nav:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .carousel-prev {
+            left: 20px;
+        }
+        
+        .carousel-next {
+            right: 20px;
+        }
+        
+        .size-selector {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: flex-start;
+        }
+        
+        .size-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .size-btn:hover, .size-btn.active {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .product-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 5px;
+        }
+        
+        .quantity-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 5px;
+            background-color: transparent;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .quantity-value {
+            font-weight: 500;
+            margin: 0 5px;
+        }
+        
+        .buy-btn {
+            background-color: white;
+            color: #9c0f0f;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .buy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .product-info {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            
+            .placeholder-text, .size-selector, .product-controls {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .size-selector {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .shoe-img {
+                max-width: 350px;
+            }
+            
+            .circular-outline {
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Leonardise<br>FOOTWEAR</div>
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">About</a>
+                <a href="#">Pricing</a>
+                <a href="#">Contact</a>
+            </div>
+            <a href="#" class="login-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="white" stroke-width="2"/>
+                    <path d="M20 21C20 18.5 17 16 12 16C7 16 4 18.5 4 21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Login
+            </a>
+        </header>
+        
+        <div class="main-content">
+            <div class="product-info">
+                <h1>Wear your Style with Comfort</h1>
+                <div class="product-name" id="product-name">Nike Airmax 270</div>
+                <div class="placeholder-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                
+                <div class="size-selector">
+                    <div class="size-btn active">12</div>
+                    <div class="size-btn">14</div>
+                    <div class="size-btn">16</div>
+                </div>
+                
+                <div class="product-controls">
+                    <div class="quantity-control">
+                        <div class="quantity-btn" id="decrease">-</div>
+                        <div class="quantity-value" id="quantity">01</div>
+                        <div class="quantity-btn" id="increase">+</div>
+                    </div>
+                    <button class="buy-btn">Buy now</button>
+                </div>
+            </div>
+            
+            <div class="product-display">
+                <div class="carousel">
+                    <div class="carousel-inner" id="carousel-inner">
+                        <!-- Slides will be added dynamically -->
+                    </div>
+                    
+                    <div class="circular-elements">
+                        <div class="circular-outline"></div>
+                        <div class="circular-indicator">
+                            <div class="circle-inside"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-controls" id="carousel-indicators">
+                        <!-- Indicators will be added dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Shoe variants data with actual images
+            const shoeVariants = [
+                {
+                    name: "Nike Airmax 270",
+                    color: "#9c0f0f",
+                    imagePlaceholder: "pngwing.com.png"
+                },
+                {
+                    name: "Nike Airmax 270 Black",
+                    color: "#222222",
+                    imagePlaceholder: "nike3.png"
+                },
+                {
+                    name: "Nike Airmax 270 Blue",
+                    color: "#0f559c",
+                    imagePlaceholder: "nike4.png"
+                }
+            ];
+            
+            // Initialize the carousel
+            const carouselInner = document.getElementById('carousel-inner');
+            const carouselIndicators = document.getElementById('carousel-indicators');
+            const productNameElement = document.getElementById('product-name');
+            
+            // Create slides and indicators
+            shoeVariants.forEach((variant, index) => {
+                // Create slide
+                const slide = document.createElement('div');
+                slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `<img src="${variant.imagePlaceholder}" alt="${variant.name}" class="shoe-img">`;
+                carouselInner.appendChild(slide);
+                
+                // Create indicator
+                const indicator = document.createElement('div');
+                indicator.className = `carousel-indicator ${index === 0 ? 'active' : ''}`;
+                indicator.dataset.index = index;
+                carouselIndicators.appendChild(indicator);
+            });
+            
+            // Carousel functionality
+            let currentIndex = 0;
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            function goToSlide(index) {
+                // Validate index
+                if (index < 0) index = slides.length - 1;
+                if (index >= slides.length) index = 0;
+                
+                // Handle transition states
+                const previousIndex = currentIndex;
+                currentIndex = index;
+                
+                // Update slides
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active', 'prev');
+                    if (i === currentIndex) {
+                        slide.classList.add('active');
+                    } else if (i === previousIndex) {
+                        slide.classList.add('prev');
+                    }
+                });
+                
+                // Update indicators
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === currentIndex);
+                });
+                
+                // Update product name and background color
+                productNameElement.style.opacity = 0;
+                setTimeout(() => {
+                    productNameElement.textContent = shoeVariants[currentIndex].name;
+                    productNameElement.style.opacity = 1;
+                    document.body.style.backgroundColor = shoeVariants[currentIndex].color;
+                    document.querySelector('.buy-btn').style.color = shoeVariants[currentIndex].color;
+                    document.querySelector('.nav-links a.active').style.color = shoeVariants[currentIndex].color;
+                }, 300);
+            }
+            
+            // Add click events to indicators
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', () => {
+                    goToSlide(parseInt(indicator.dataset.index));
+                });
+            });
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    goToSlide(currentIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    goToSlide(currentIndex + 1);
+                }
+            });
+            
+            // Size selector functionality
+            const sizeBtns = document.querySelectorAll('.size-btn');
+            sizeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    sizeBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+            
+            // Quantity control functionality
+            const quantityValue = document.getElementById('quantity');
+            const decreaseBtn = document.getElementById('decrease');
+            const increaseBtn = document.getElementById('increase');
+            
+            let quantity = 1;
+            
+            decreaseBtn.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity--;
+                    updateQuantityDisplay();
+                }
+            });
+            
+            increaseBtn.addEventListener('click', () => {
+                quantity++;
+                updateQuantityDisplay();
+            });
+            
+            function updateQuantityDisplay() {
+                quantityValue.textContent = quantity.toString().padStart(2, '0');
+            }
+            
+            // Auto slide
+            let autoSlideInterval = setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, 5000);
+            
+            // Pause auto slide on hover
+            const carousel = document.querySelector('.carousel');
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, 5000);
+            });
+            
+            // Add swipe gesture support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX) {
+                    // Swipe left
+                    goToSlide(currentIndex + 1);
+                } else if (touchEndX > touchStartX) {
+                    // Swipe right
+                    goToSlide(currentIndex - 1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
