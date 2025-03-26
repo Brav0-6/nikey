@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Product Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: black;
+      }
+      .active-tab {
+        border-bottom: 2px solid blue;
+      }
+      .image-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%; /* Adjust based on your design */
+        max-width: 500px; /* Ensures the image doesn't overflow */
+      }
+
+      .zoom-image {
+        transition: transform 0.3s ease-in-out,
+          transform-origin 0.3s ease-in-out;
+        width: 100%;
+      }
+
+      .star {
+        font-size: 24px;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+      .star:hover,
+      .star.active {
+        color: gold;
+      }
+
+      .quantity-control {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 5px;
+      }
+
+      .quantity-btn {
+        width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        background-color: transparent;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .quantity-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .quantity-value {
+        font-weight: 500;
+        margin: 0 5px;
+      }
+
+      .product-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 50px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .buy-btn {
+        background-color: white;
+        color: #9c0f0f;
+        border: none;
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .buy-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      }
+
+      .home-button {
+        position: absolute;
+        top: 20px;
+        margin: 5px;
+
+        width: 50px;
+        height: 50px;
+        background-color: rgb(0, 0, 0);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .home-button:hover {
+        background-color: rgba(218, 20, 20, 0.89);
+        transform: rotate(360deg) scale(1.1);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .home-button svg {
+        width: 30px;
+        height: 30px;
+        stroke: white;
+        transition: stroke 0.3s ease;
+      }
+
+      .home-button:hover svg {
+        stroke: white;
+      }
+
+      @keyframes containerFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .size-selector {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        justify-content: flex-start;
+      }
+
+      .size-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .size-btn:hover,
+      .size-btn.active {
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mx-auto p-4">
+      <!-- Product Section -->
+      <div
+        class="bg-white/20 backdrop-blur-lg border border-white/10 shadow-lg rounded-lg p-6 flex flex-col lg:flex-row items-center"
+      >
+        <a href="index.html" class="home-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </a>
+        <!-- Product Image -->
+        <div class="w-full lg:w-1/2 p-4 relative">
+          <div class="image-container">
+            <img
+              id="product-image"
+              src=""
+              alt="DNK Yellow Shoes"
+              class="zoom-image"
+            />
+          </div>
+          <span
+            class="absolute top-2 left-2 bg-white text-gray-800 text-xs font-semibold px-2 py-1 rounded"
+          >
+            Sale!
+          </span>
+        </div>
+
+        <!-- Product Details -->
+        <div class="w-full lg:w-1/2 p-6 text-white">
+          <nav class="text-sm text-gray-400 mb-4">
+            <a href="index.html" class="hover:underline">Home</a> /
+            <a href="#" class="hover:underline">Men</a> /
+            <span id="product-text"></span>
+          </nav>
+          <h1 class="text-3xl font-bold mb-2" id="product-name"></h1>
+          <div class="flex items-center mb-4">
+            <span class="text-gray-400 line-through mr-2" id="product-prices"></span>
+            <span class="text-red-400 text-xl font-semibold" id="product-price"></span>
+            <span class="text-green-400 ml-2" id="product-Shipping"></span>
+          </div>
+          <p class="text-gray-300 mb-4" id="product-description">
+           
+          </p>
+
+          <!-- Star Rating and Review Section -->
+          <div>
+            <h2 class="text-xl font-bold mb-2">Rate this Product</h2>
+            <div id="star-rating" class="flex mb-4">
+              <span class="star text-gray-400" data-value="1">★</span>
+              <span class="star text-gray-400" data-value="2">★</span>
+              <span class="star text-gray-400" data-value="3">★</span>
+              <span class="star text-gray-400" data-value="4">★</span>
+              <span class="star text-gray-400" data-value="5">★</span>
+            </div>
+            <p id="selected-rating" class="text-gray-300">You rated: 0 stars</p>
+          </div>
+          <br />
+
+          <!-- Quantity Selector -->
+          <div class="product-controls">
+            <div class="quantity-control">
+              <div class="quantity-btn" id="decrease">-</div>
+              <div class="quantity-value" id="quantity">01</div>
+              <div class="quantity-btn" id="increase">+</div>
+            </div>
+          </div>
+          <br />
+
+          <div class="size-selector">
+            <div class="size-btn active">7</div>
+            <div class="size-btn">8</div>
+            <div class="size-btn">9</div>
+            <div class="size-btn">10</div>
+          </div>
+          <br />
+          <button class="buy-btn">Buy now</button>
+
+          <!-- Add to Cart Button -->
+          <button class="buy-btn">Add to cart</button>
+
+          <p class="text-gray-400 mt-4">
+            Category: <span class="text-gray-200">Men</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="mt-8">
+        <ul class="flex border-b border-gray-600">
+          <li class="mr-2">
+            <button
+              class="tab-btn active-tab bg-transparent py-2 px-4 text-blue-400 font-semibold"
+            >
+              Description
+            </button>
+          </li>
+          <li class="mr-2">
+            <button
+              class="tab-btn bg-transparent py-2 px-4 text-gray-400 hover:text-blue-400 font-semibold"
+            >
+              Reviews (0)
+            </button>
+          </li>
+        </ul>
+
+        <div
+          class="tab-content bg-white/20 backdrop-blur-lg border border-white/10 shadow-lg p-4 mt-2 text-white"
+        >
+          <p class="text-gray-300">
+            A premium shoe designed for comfort and durability.
+          </p>
+        </div>
+      </div>
+
+      <!-- Add a Review Section -->
+      <div
+        class="mt-8 bg-white/20 backdrop-blur-lg border border-white/10 shadow-lg p-6 text-white"
+      >
+        <h2 class="text-xl font-bold mb-2">Add a Review</h2>
+        <textarea
+          id="review-text"
+          class="w-full p-2 border border-gray-500 bg-transparent text-white rounded-md"
+          placeholder="Write your review here..."
+        ></textarea>
+        <button
+          id="submit-review"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition mt-2"
+        >
+          Submit Review
+        </button>
+        <p id="review-message" class="text-green-400 mt-2 hidden">
+          Review Submitted Successfully!
+        </p>
+      </div>
+
+      <!-- Similar Products Section -->
+      <div
+        class="mt-8 bg-white/20 backdrop-blur-lg border border-white/10 shadow-lg p-6 text-white"
+      >
+        <h2 class="text-xl font-bold mb-4">Similar Products</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Product 1"
+              class="rounded-lg"
+            />
+            <p class="mt-2">Product 1</p>
+            <span class="text-green-400">₹100</span>
+          </div>
+          <div class="text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Product 2"
+              class="rounded-lg"
+            />
+            <p class="mt-2">Product 2</p>
+            <span class="text-green-400">₹120</span>
+          </div>
+          <div class="text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Product 3"
+              class="rounded-lg"
+            />
+            <p class="mt-2">Product 3</p>
+            <span class="text-green-400">₹130</span>
+          </div>
+          <div class="text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Product 4"
+              class="rounded-lg"
+            />
+            <p class="mt-2">Product 4</p>
+            <span class="text-green-400">₹140</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const products = {
+        product1: {
+           
+            text:"DNK Yellow Shoes",
+          name: "DNK Yellow Shoes",
+          image: "nike3.png",
+          prices:"₹150.00",
+          price: "₹120.00",
+          description:
+            "A high-quality and comfortable running shoe designed for performance and style.",
+          Shipping:"+ Free Shipping",
+        },
+        product2: {
+            id:"2",
+            text:"Adidas Sports Shoes",
+          name: "Adidas Sports Shoes",
+          image: "nike(2).png",
+          prices:"₹150.00",
+          price: "₹120.00",
+          description:
+            "Perfect for running and casual wear with an ultra-lightweight design.",
+            Shipping:"+ Free Shipping",
+        },
+        product3: {
+            id:"3",
+            text:"Puma Casual Sneakers",
+          name: "Puma Casual Sneakers",
+          image: "nike(3).png",
+          prices:"₹200.00",
+          price: "₹110.00",
+          description: "Stylish and comfortable sneakers for daily wear.",
+          Shipping:"+ Free Shipping",
+        },
+         product4: {
+                id:"4",
+                text:"Nike Air Max",
+                name: "Nike Air Max",
+                image: "nike(4).png",
+                prices:"₹250.00",
+                price: "₹180.00",
+                description: "A premium and comfortable sneaker with an air-cushioned sole.",
+                Shipping:"+ Free Shipping",
+            },
+            product5: {
+                id:"5",
+                text:"Leather Backpack",
+                name: "Leather Backpack",
+                image: "nike(5).png",
+                prices:"₹120.00",
+                price: "₹90.00",
+                description: "Durable and stylish leather backpack for travel and daily use.",
+                Shipping:"+ Free Shipping",
+            },
+            product6: {
+                id:"6",
+                text:"Smart Watch Pro",
+                name: "Smart Watch Pro",
+                image: "nike6.png",
+                prices:"₹300.00",
+                price: "₹250.00",
+                description: "A modern smartwatch with health tracking and mobile notifications.",
+                Shipping:"+ Free Shipping",
+            },
+            product7: {
+                id:"7",
+                text:"NIKE Air",
+                name: "NIKE Air",
+                image: "nike(7).png",
+                prices:"₹300.00",
+                price: "₹70.00",
+                description: "Noise-canceling wireless earbuds with excellent sound quality.",
+                Shipping:"+ Free Shipping",
+            },
+            product8: {
+                id:"8",
+                text:"Shoes Gaming",
+                name: "Shoes Gaming ",
+                image: "nike(8).png",
+                prices:"₹230.00",
+                price: "₹150.00",
+                description: "High precision gaming mouse with customizable RGB lighting.",
+                Shipping:"+ Free Shipping",
+            },
+            product9: {
+                id:"9",
+                text:"Arrow Shoes",
+                name: "Arrow Shoes",
+                image: "nike(9).png",
+                prices:"₹160.00",
+                price: "₹130.00",
+                description: "Ergonomic mechanical keyboard with clicky switches and backlit keys.",
+                Shipping:"+ Free Shipping",
+            },
+            product10: {
+                id:"10",
+                text:"Sports Waear Shoes",
+                name: "Sports Waear Shoes",
+                image: "nike4.png",
+                prices:"₹180.00",
+                price: "₹120.00",
+                description: "Lightweight and durable sports water bottle with leak-proof design.",
+                Shipping:"+ Free Shipping",
+            }
+      };
+// Get product ID from URL
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('id'); // Extracts the id from ?id=product4
+console.log("Fetched Product ID:", productId);
+
+// Check if the product exists in the database
+const product = products[productId];
+
+if (product) {
+    document.getElementById("product-image").src = product.image;
+    document.getElementById("product-text").textContent = product.text;
+    document.getElementById("product-name").textContent = product.name;
+    document.getElementById("product-prices").textContent = product.prices;
+    document.getElementById("product-price").textContent = product.price;
+    document.getElementById("product-description").textContent = product.description;
+    document.getElementById("product-Shipping").textContent = product.Shipping;
+}else {
+    console.log("Product not found!");
+}
+
+      
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Quantity control functionality
+        const quantityValue = document.getElementById("quantity");
+        const decreaseBtn = document.getElementById("decrease");
+        const increaseBtn = document.getElementById("increase");
+
+        let quantity = 1;
+
+        decreaseBtn.addEventListener("click", () => {
+          if (quantity > 1) {
+            quantity--;
+            updateQuantityDisplay();
+          }
+        });
+
+        increaseBtn.addEventListener("click", () => {
+          quantity++;
+          updateQuantityDisplay();
+        });
+
+        function updateQuantityDisplay() {
+          quantityValue.textContent = quantity.toString().padStart(2, "0");
+        }
+        // Tab Navigation
+        const tabButtons = document.querySelectorAll(".tab-btn");
+        const tabContent = document.querySelector(".tab-content");
+
+        tabButtons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            document
+              .querySelector(".active-tab")
+              .classList.remove("active-tab");
+            button.classList.add("active-tab");
+            tabContent.innerHTML =
+              index === 0
+                ? `<p class="text-gray-300">A premium shoe designed for comfort and durability.</p>`
+                : `<p class="text-gray-300">There are no reviews yet.</p>`;
+          });
+        });
+
+        // Image Zoom Effect
+        const imgContainer = document.querySelector(".image-container");
+        const productImage = document.getElementById("product-image");
+
+        imgContainer.addEventListener("mousemove", (e) => {
+          const { left, top, width, height } =
+            imgContainer.getBoundingClientRect();
+          const x = ((e.clientX - left) / width) * 100;
+          const y = ((e.clientY - top) / height) * 100;
+
+          productImage.style.transformOrigin = `${x}% ${y}%`;
+          productImage.style.transform = "scale(2)"; // Increase scale for better zoom effect
+        });
+
+        imgContainer.addEventListener("mouseleave", () => {
+          productImage.style.transform = "scale(1)";
+        });
+
+        // Star Rating System
+        const stars = document.querySelectorAll(".star");
+        const ratingDisplay = document.getElementById("selected-rating");
+        let selectedRating = 0;
+
+        stars.forEach((star) => {
+          star.addEventListener("mouseover", () => {
+            resetStars();
+            highlightStars(star.dataset.value);
+          });
+
+          star.addEventListener("click", () => {
+            selectedRating = star.dataset.value;
+            ratingDisplay.innerText = `You rated: ${selectedRating} stars`;
+            stars.forEach((s) => s.classList.remove("active"));
+            highlightStars(selectedRating, true);
+          });
+
+          star.addEventListener("mouseleave", () => {
+            if (selectedRating === 0) resetStars();
+            else highlightStars(selectedRating, true);
+          });
+        });
+
+        function highlightStars(value, persist = false) {
+          stars.forEach((s) => {
+            if (s.dataset.value <= value) {
+              s.classList.add("active");
+              s.style.color = "gold";
+            } else if (!persist) {
+              s.classList.remove("active");
+              s.style.color = "gray";
+            }
+          });
+        }
+
+        function resetStars() {
+          stars.forEach((s) => (s.style.color = "gray"));
+        }
+
+        // Submit Review
+        document
+          .getElementById("submit-review")
+          .addEventListener("click", () => {
+            const reviewText = document
+              .getElementById("review-text")
+              .value.trim();
+
+            if (reviewText === "" || selectedRating === 0) {
+              alert("Please enter a review and select a star rating.");
+              return;
+            }
+
+            // Store the review
+            reviews.push({ rating: selectedRating, text: reviewText });
+
+            // Update the reviews tab count
+            reviewsTab.textContent = `Reviews (${reviews.length})`;
+
+            // Clear input fields
+            document.getElementById("review-text").value = "";
+            selectedRating = 0;
+            ratingDisplay.innerText = "You rated: 0 stars";
+            resetStars();
+
+            document
+              .getElementById("review-message")
+              .classList.remove("hidden");
+
+            // Refresh the review section if it's active
+            if (reviewsTab.classList.contains("active-tab")) {
+              updateReviewsTab();
+            }
+
+            setTimeout(() => {
+              document.getElementById("review-message").classList.add("hidden");
+            }, 2000);
+          });
+
+        function updateReviewsTab() {
+          if (reviews.length === 0) {
+            tabContent.innerHTML = `<p class="text-gray-300">There are no reviews yet.</p>`;
+          } else {
+            tabContent.innerHTML = reviews
+              .map(
+                (review) => `
+                <div class="mb-2 p-2 border-b border-gray-600">
+                    <p class="text-yellow-400">${"★".repeat(
+                      review.rating
+                    )}${"☆".repeat(5 - review.rating)}</p>
+                    <p class="text-gray-300">${review.text}</p>
+                </div>
+            `
+              )
+              .join("");
+          }
+        }
+      });
+
+      // Size selector functionality
+      const sizeBtns = document.querySelectorAll(".size-btn");
+      sizeBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          sizeBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
