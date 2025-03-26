@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Leonardise Footwear - Premium Athletic Shoes</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Archivo Black", sans-serif;
         }
         
         body {
@@ -240,12 +241,13 @@
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.3);
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            display :none;
+            transition: background-color 0.1s ease;
+            display:none;
         }
         
         .carousel-indicator.active {
             background-color: white;
+            
         }
         
         .carousel-nav {
@@ -399,9 +401,515 @@
                 width: 300px;
             }
         }
+
+        .featured-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    .title-underline {
+      width: 120px;
+      height: 3px;
+      background-color: #0078d7;
+      margin: 0 auto 40px;
+    }
+    
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .product-card {
+      width: 220px;
+      background-color: #f7f7f7;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-image {
+      height: 220px;
+      width: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+    
+    .sale-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: white;
+      color: #333;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    
+    .product-info {
+      padding: 15px;
+    }
+    
+    .product-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .product-category {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .product-price {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .original-price {
+      text-decoration: line-through;
+      color: #999;
+    }
+    
+    .sale-price {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .price-range {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .rating {
+      display: flex;
+      color: #ffa41c;
+      font-size: 16px;
+    }
+    
+    .color-options {
+      display: flex;
+      gap: 5px;
+      margin: 10px 0;
+    }
+    
+    .color-option {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-size: 12px;
+      background-color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .color-option:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .color-option.blue {
+      border-color: #0078d7;
+      color: #0078d7;
+    }
+    
+    .color-option.green {
+      border-color: #107c10;
+      color: #107c10;
+    }
+    
+    .color-option.red {
+      border-color: #e81123;
+      color: #e81123;
+    }
+
+    banner {
+      position: relative;
+      background-color:rgb(33, 98, 238);
+      color: white;
+      overflow: hidden;
+    }
+    
+    .containers {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 1rem;
+    }
+    
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+   
+    .uppercase {
+      text-transform: uppercase;
+    }
+    
+    .small-title {
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .main-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .description {
+      margin-bottom: 1rem;
+    }
+    
+    .promotion {
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    
+    .button {
+      display: inline-block;
+      background-color: white;
+      color: #2563eb;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    .button:hover {
+      background-color: #f8fafc;
+      transform: translateY(-2px);
+    }
+    
+    .parallax-container {
+      width: 100%;
+      height: 24rem;
+      margin-top: 2rem;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .parallax {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('nike3.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      will-change: transform;
+      transform: translateZ(0);
+    }
+    
+    /* Media queries for responsive design */
+    @media (min-width: 768px) {
+      .flex-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .content {
+        width: 50%;
+      }
+      
+      .parallax-container {
+        width: 50%;
+        margin-top: 0;
+      }
+      
+      .main-title {
+        font-size: 3rem;
+      }
+    }
+    
+    /* Animation for parallax effect */
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+        /* Preloader Styles */
+        .preloader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1s ease-in-out, visibility 6s ease-in-out;
+        }
+
+        .preloader img {
+            width: 500px;
+            animation: fadeInOut 3s infinite alternate ease-in-out;
+        }
+
+        .preloader-text {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            overflow: hidden;
+            width: 0;
+            animation: typing 2s steps(20, end) forwards, blink 0.8s infinite;
+        }
+
+        /* Keyframes for Logo Animation */
+        @keyframes fadeInOut {
+            0% { opacity: 0.2; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Typing Effect */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 80px; } /* Adjust according to text length */
+        }
+
+        /* Blinking Cursor */
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* Hide preloader */
+        .preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+    
+
+
+
+.footer {
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.footer-section {
+    width: 25%;
+    padding: 10px;
+}
+
+.footer-section h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid white;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #ffcc00;
+}
+/* From Uiverse.io by ahmed150up2 */ 
+.card {
+    position:center;
+    align:center;
+  display: flex;
+  height: 70px;
+  width: 270px;
+}
+
+.card svg {
+  position: absolute;
+  display: flex;
+  width: 60%;
+  height: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  opacity: 1;
+  transition: opacity 0.25s;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.card .social-link1,.card .social-link2,.card .social-link3,.card .social-link4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  color: whitesmoke;
+  font-size: 24px;
+  text-decoration: none;
+  transition: 0.25s;
+  border-radius: 50px;
+}
+
+.card svg {
+  transform: scale(1);
+}
+
+.card .social-link1:hover {
+  background-color: #1a1e22;
+  animation: bounce_613 0.4s linear;
+}
+
+.card .social-link2:hover {
+  background-color: #0a66c2;
+  animation: bounce_613 0.4s linear;
+}
+
+.card .social-link3:hover {
+  background-color: #0059f7;
+  animation: bounce_613 0.4s linear;
+}
+
+.card .social-link4:hover {
+  background-color: #1d4292;
+  animation: bounce_613 0.4s linear;
+}
+
+@keyframes bounce_613 {
+  40% {
+    transform: scale(1.4);
+  }
+
+  60% {
+    transform: scale(0.8);
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.newsletter form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newsletter input {
+    padding: 8px;
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.newsletter button {
+    padding: 8px 15px;
+    margin-top: 10px;
+    border: none;
+    background: #ffcc00;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.newsletter button:hover {
+    background: white;
+    color: black;
+}
+
+
     </style>
 </head>
 <body>
+
+   <!-- Preloader -->
+    <div class="preloader">
+        <img src="logo.png" alt="Nike Logo">
+        <p class="preloader-text"></p>
+    </div>
+
     <div class="container">
         <header>
             <div class="logo">BEMAN</div>
@@ -411,7 +919,7 @@
                 <a href="#">Pricing</a>
                 <a href="#">Contact</a>
             </div>
-            <a href="#" class="login-btn">
+            <a href="login.html" class="login-btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="white" stroke-width="2"/>
                     <path d="M20 21C20 18.5 17 16 12 16C7 16 4 18.5 4 21" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -451,9 +959,7 @@
                     
                     <div class="circular-elements">
                         <div class="circular-outline"></div>
-                        <div class="circular-indicator">
-                            <div class="circle-inside"></div>
-                        </div>
+                        
                     </div>
                     
                     <div class="carousel-controls" id="carousel-indicators">
@@ -464,6 +970,323 @@
         </div>
     </div>
     
+    <section class="featured-section">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="title-underline"></div>
+    
+    <div class="products-container">
+      <a href="product1.html?id=product1" class="product-card-link"  id="1">
+  <div class="product-card">
+    <div class="product-image">
+      <img src="nike3.png" alt="DNK Yellow Shoes">
+      <span class="sale-badge">Sale!</span>
+    </div>
+    <div class="product-info">
+      <h3 class="product-title">DNK Yellow Shoes</h3>
+      <p class="product-category">Men</p>
+      <p class="product-price">
+        <span class="original-price">₹150.00</span>
+        <span class="sale-price">₹120.00</span>
+      </p>
+      <div class="rating">
+            ★★★★★
+          </div>
+    </div>
+    
+  </div>
+</a>
+
+      
+      <!-- Product 2 -->
+      <a href="product1.html?id=product2" class="product-card-link "  id="2">
+      <div class="product-card" >
+        <div class="product-image">
+          <img src="nike(2).png" alt="DNK Blue Shoes">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">DNK Blue Shoes</h3>
+          <p class="product-category">Men</p>
+          <p class="product-price">
+            <span class="price-range">₹200.00 - ₹240.00</span>
+          </p>
+         
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+      </a>
+      <!-- Product 3 -->
+      <a href="product1.html?id=product3" class="product-card-link" id="3">
+      <div class="product-card" >
+        <div class="product-image">
+          <img src="nike(3).png" alt="Dark Brown Jeans">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Dark Brown Jeans</h3>
+          <p class="product-category">Men</p>
+          <p class="product-price">
+            <span class="price-range">₹150.00</span>
+          </p>
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+      </a>
+      <!-- Product 4 -->
+      <a  href="product1.html?id=product4" class="product-card-link" id="4">
+      <div class="product-card" onclick="location.href='product4.html';" style="cursor: pointer;">
+        <div class="product-image">
+          <img src="nike(4).png" alt="Blue Shoes">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Blue Denim Jeans</h3>
+          <p class="product-category">Women</p>
+          <p class="product-price">
+            <span class="price-range">₹150.00</span>
+          </p>
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+      </a>
+      <!-- Product 5 -->
+      <a  href="product1.html?id=product5" class="product-card-link">
+      <div class="product-card" onclick="location.href='product5.html';" style="cursor: pointer;">
+        <div class="product-image">
+          <img src="nike(5).png" alt="Basic Gray Jeans">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Basic Gray Jeans</h3>
+          <p class="product-category">Women</p>
+          <p class="product-price">
+            <span class="price-range">₹150.00</span>
+          </p>
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+</a>
+
+      <!-- Product 6 -->
+      <a  href="product1.html?id=product6" class="product-card-link">
+      <div class="product-card" onclick="location.href='product6.html';" style="cursor: pointer;">
+        <div class="product-image">
+          <img src="nike6.png" alt="DNK Yellow Shoes">
+          <span class="sale-badge">Sale!</span>
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">DNK Yellow Shoes</h3>
+          <p class="product-category">Men</p>
+          <p class="product-price">
+            <span class="original-price">₹150.00</span>
+            <span class="sale-price">₹120.00</span>
+          </p>
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+      </a>
+      <!-- Product 7 -->
+      <a  href="product1.html?id=product7" class="product-card-link">
+      <div class="product-card">
+        <div class="product-image">
+          <img src="nike(7).png" alt="DNK Blue Shoes">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">DNK Blue Shoes</h3>
+          <p class="product-category">Men</p>
+          <p class="product-price">
+            <span class="price-range">₹200.00 - ₹240.00</span>
+          </p>
+          
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+      </a>
+      <!-- Product 8 -->
+      <a  href="product1.html?id=product8" class="product-card-link">
+      <div class="product-card">
+        <div class="product-image">
+          <img src="nike(8).png" alt="Dark Brown Jeans">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Dark Brown Jeans</h3>
+          <p class="product-category">Men</p>
+          <p class="product-price">
+            <span class="price-range">₹150.00</span>
+          </p>
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+      </a>
+      <!-- Product 9 -->
+      <a  href="product1.html?id=product9" class="product-card-link">
+      <div class="product-card">
+        <div class="product-image">
+          <img src="nike(9).png" alt="Blue Denim Jeans">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Blue Denim Jeans</h3>
+          <p class="product-category">Women</p>
+          <p class="product-price">
+            <span class="price-range">₹150.00</span>
+          </p>
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+      </a>
+      <!-- Product 10 -->
+      <a  href="product1.html?id=product10" class="product-card-link">
+      <div class="product-card">
+        <div class="product-image">
+          <img src="nike4.png" alt="Basic Gray Jeans">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Basic Gray Jeans</h3>
+          <p class="product-category">Women</p>
+          <p class="product-price">
+            <span class="price-range">₹150.00</span>
+          </p>
+          <div class="rating">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+    </div>
+    </a>
+
+    </div>
+  </section>
+<br>
+<div class="banner"style="background-color: #111; color: white;">
+    <div class="containers">
+      <div class="flex-container">
+        <div class="content">
+          <h2 class="small-title uppercase">Limited Time Offer</h2>
+          <h1 class="main-title">Special Edition</h1>
+          <p class="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+          </p>
+          <p class="promotion">
+            Buy This T-shirt At 20% Discount, Use Code OFF20
+          </p>
+          <a class="button" href="#">
+            Shop Now
+          </a>
+        </div>
+        <div class="parallax-container">
+          <div class="parallax" id="parallax-img"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+ <footer class="footer">
+        <div class="footer-container">
+            <!-- About Section -->
+            <div class="footer-section about">
+                <h2>About Us</h2>
+                <p>We provide top-notch services to our customers, ensuring satisfaction and quality in everything we do.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section contact">
+                <h2>Contact Info</h2>
+                <p><i class="fas fa-envelope"></i> support@example.com</p>
+                <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Street, City, Country</p>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-section newsletter">
+                <h2>Subscribe to our Newsletter</h2>
+                <form id="newsletter-form">
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p id="subscribe-msg"></p>
+            </div>
+        </div>
+
+       <!-- From Uiverse.io by ahmed150up2 --> 
+           
+
+        <div class="footer-bottom">
+
+            <div class="card" style="align:'center'">
+  <a class="social-link1">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" height="1em" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+  </a>
+  <a class="social-link2">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" fill="#fff"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>          </a>
+  <a class="social-link3">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="#fff"><path d="M232 237.2c31.8-15.2 48.4-38.2 48.4-74 0-70.6-52.6-87.8-113.3-87.8H0v354.4h171.8c64.4 0 124.9-30.9 124.9-102.9 0-44.5-21.1-77.4-64.7-89.7zM77.9 135.9H151c28.1 0 53.4 7.9 53.4 40.5 0 30.1-19.7 42.2-47.5 42.2h-79v-82.7zm83.3 233.7H77.9V272h84.9c34.3 0 56 14.3 56 50.6 0 35.8-25.9 47-57.6 47zm358.5-240.7H376V94h143.7v34.9zM576 305.2c0-75.9-44.4-139.2-124.9-139.2-78.2 0-131.3 58.8-131.3 135.8 0 79.9 50.3 134.7 131.3 134.7 61.3 0 101-27.6 120.1-86.3H509c-6.7 21.9-34.3 33.5-55.7 33.5-41.3 0-63-24.2-63-65.3h185.1c.3-4.2.6-8.7.6-13.2zM390.4 274c2.3-33.7 24.7-54.8 58.5-54.8 35.4 0 53.2 20.8 56.2 54.8H390.4z"></path></svg>
+  </a>
+  <a class="social-link4">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="#fff"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
+  </a>
+</div>  
+
+            <p>&copy; <span id="year"></span> Your Company | All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+  <script>
+
+    document.querySelectorAll('.social-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.open(this.getAttribute('data-url'), '_blank');
+    });
+});
+
+
+function navigateToProduct(id) {
+    window.location.href = "product1.html?id=" + id;
+}
+console.log("Navigating to product with ID:", id);
+
+
+
+    // Parallax effect implementation
+    window.addEventListener('scroll', function() {
+      const parallax = document.getElementById('parallax-img');
+      const scrollPosition = window.pageYOffset;
+      parallax.style.transform = 'translateY(' + scrollPosition * 0.4 + 'px)';
+    });
+    
+    // Additional subtle floating animation
+    const parallaxImg = document.getElementById('parallax-img');
+    parallaxImg.style.animation = 'float 6s ease-in-out infinite';
+  </script>
+  
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Shoe variants data with actual images
@@ -633,6 +1456,34 @@
                 }
             }
         });
+
+    window.addEventListener("load", function() {
+            const preloader = document.querySelector(".preloader");
+            const content = document.querySelector(".content");
+
+            setTimeout(() => {
+                preloader.classList.add("hide");
+                content.style.display = "block";
+            }, 2500); // Delay before hiding preloader
+        });
+
+
+// Set current year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Newsletter subscription form
+document.getElementById("newsletter-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let email = document.getElementById("email").value;
+    
+    if (email) {
+        document.getElementById("subscribe-msg").textContent = "Subscribed Successfully!";
+        document.getElementById("subscribe-msg").style.color = "#ffcc00";
+        document.getElementById("email").value = ""; // Clear input
+    }
+});
+
+        
     </script>
 </body>
 </html>
